@@ -45,3 +45,25 @@ return acc
 console.log(result) 
 
 
+// Method 2:
+
+// const arr = [
+//   { tech: 'React', vulnerability: true },
+//   { tech: 'Angular', vulnerability: true },
+//   { tech: 'React', vulnerability: false },
+//   { tech: 'Php', vulnerability: false },
+//   { tech: 'Vue', vulnerability: true },
+//   { tech: 'Php', vulnerability: false }
+// ];
+
+// const counts = {};
+// for (let i = 0; i < arr.length; i++) {
+//   const tech = arr[i].tech;
+//   if (!counts[tech]) {
+//     counts[tech] = { victim: tech, count: 0 };
+//   }
+//   counts[tech].count++;
+// }
+
+// const result = Object.values(counts);
+// console.log(result);

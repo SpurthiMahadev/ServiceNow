@@ -23,3 +23,12 @@ const result = fruits.reduce((acc, item) => {
 }, {})
 
 console.log(result)
+
+
+// output
+{
+  apples: 1,
+  banana: 8,
+  orange: 40,
+  stawberry: 33
+}

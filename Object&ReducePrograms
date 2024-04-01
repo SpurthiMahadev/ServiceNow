@@ -1,0 +1,25 @@
+const fruits = [{
+    type: 'apples',
+    pieces: 1
+  },
+  {
+    type: 'banana',
+    pieces: 8
+  },
+  {
+    type: 'stawberry',
+    pieces: 33
+  },
+  {
+    type: 'orange',
+    pieces: 40
+  }
+]
+
+const result = fruits.reduce((acc, item) => {
+  acc[item.type] = item.pieces
+  return acc
+
+}, {})
+
+console.log(result)

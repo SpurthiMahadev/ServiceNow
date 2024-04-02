@@ -32,3 +32,18 @@ console.log(result)
   orange: 40,
   stawberry: 33
 }
+
+2. const result = fruits.reduce((acc, item) => {
+  return acc + item.pieces
+
+}, 0) // output 82
+
+
+
+3. const result = fruits.reduce((acc, item) => {
+// another way of 1st problem
+  return {...acc, [item.type]: item.pieces}
+ 
+
+}, 0)
+

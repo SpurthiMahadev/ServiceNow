@@ -19,7 +19,6 @@ const fruits = [{
 const result = fruits.reduce((acc, item) => {
   acc[item.type] = item.pieces
   return acc
-
 }, {})
 
 console.log(result)
@@ -35,7 +34,6 @@ console.log(result)
 
 2. const result = fruits.reduce((acc, item) => {
   return acc + item.pieces
-
 }, 0) // output 82
 
 
@@ -43,7 +41,9 @@ console.log(result)
 3. const result = fruits.reduce((acc, item) => {
 // another way of 1st problem
   return {...acc, [item.type]: item.pieces}
- 
+}, [])
 
-}, 0)
+4. const result = fruits.reduce((acc, item) => {
+  return [...acc, item.type]
+}, [])  //output ["apples", "banana", "stawberry", "orange"]
 

@@ -1,0 +1,15 @@
+let a = ['1', '1', '2', '3', '4', '1','2','3','4','9','0']
+
+const findDup = () => {
+let countMap = {}
+a.forEach((item)=>{
+countMap[item] = countMap[item] ? countMap[item]+1 : 1
+})
+const res = a.filter((ele) => 
+ countMap[ele] === 2
+)
+return [...new Set(res)]
+}
+
+
+console.log(findDup())

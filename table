@@ -1,0 +1,33 @@
+import React, { useState, useEffect } from 'react';
+
+const TableComponent = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('https://example.com/api/data')
+      .then(response => response.json())
+      .then(data => setData(data))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Version</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item, index) => (
+          <tr key={index}>
+            <td>{item.version}</td>
+            <td>{item.status}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};
+
+export default TableComponent;

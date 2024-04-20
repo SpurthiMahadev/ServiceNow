@@ -1,0 +1,46 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const PaginationExample = () => {
+  const [data, setData] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // Number of items to display per page
+
+  useEffect(() => {
+    fetchData();
+  }, [currentPage]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`https://example.com/api/data?page=${currentPage}`);
+      setData(response.data.data); // Assuming your API response has a 'data' property with the array of items
+      setTotalPages(response.data.totalPages); // Assuming your API response has a 'totalPages' property
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
+  return (
+    <div>
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+      <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous</button>
+      <span>{`Page ${currentPage} of ${totalPages}`}</span>
+      <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
+    </div>
+  );
+};
+
+export default PaginationExample;

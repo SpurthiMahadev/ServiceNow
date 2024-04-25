@@ -1,0 +1,38 @@
+import "./styles.css";
+import React, { useState, useEffect } from "react";
+import _ from "underscore";
+
+const App = () => {
+  const [data, setData] = useState([])
+  const [inputValue, setInputValue] = useState(null)
+
+  useEffect(() => {
+    fetch('https://dummyjson.com/products/search?q=&{inputValue}')
+      .then(response => response.json())
+      .then(resdata => setData(resdata.products))
+  }, [inputValue])
+  // const AUTOCOMPLETE_URL = "https://dummyjson.com/products/search?q={keyword}";
+  console.log('data', data)
+  return (
+    <div className="App">
+      <div className="box">
+        <form>
+          <label for="search">Search:</label>
+          <input type="text" id="search" name="search" list="suggestions"
+            value={inputValue} onChange={e => setInputValue(e.target.value)} ></input>
+          <datalist id="suggestions">
+            {data.map((item) => (
+              <ul>
+                <li>
+                  <option value={item.title} />
+                </li>
+              </ul>
+            ))}
+
+          </datalist>
+        </form>
+      </div>
+    </div>
+  );
+}
+export default App;

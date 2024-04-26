@@ -1,0 +1,27 @@
+
+const numbers = [5,5,10];
+
+if (!Array.prototype.myreduce) {
+  Array.prototype.myreduce = function(callback, initialValue) {
+    if (typeof callback !== 'function') {
+      throw new TypeError('Callback must be a function');
+    }
+
+    const array = this;
+    const length = array.length;
+    let accumulator = initialValue !== undefined ? initialValue : array[0];
+
+    for (let i = initialValue !== undefined ? 0 : 1; i < length; i++) {
+      if (i in array) {
+        accumulator = callback.call(undefined, accumulator, array[i], i, array);
+      }
+    }
+
+    return accumulator;
+  };
+}
+const sum = numbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+}, 0);
+
+console.log(sum); // Output: 15

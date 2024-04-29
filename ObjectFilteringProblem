@@ -1,0 +1,37 @@
+let input = [
+  { name: 'abc', email: 'abc@gmail.com', age: 20 },
+  { name: 'xyz', email: 'xyz@gmail.com', age: 22 },
+  { name: 'acd', email: 'acd@gmail.com', age: 24 },
+  { name: 'abcd', email: 'abc@gmail.com', age: 24 },
+  { name: 'def', email: 'def@gmail.com', age: 24 },
+  { name: 'abcd', email: 'abc@gmail.com', age: 24 },
+  { name: 'wxyz', email: 'xyz@gmail.com', age: 60 }
+];
+/*output:  [{
+  age: 24,
+  email: "abc@gmail.com",
+  name: "abcd"
+}, {
+  age: 60,
+  email: "xyz@gmail.com",
+  name: "wxyz"
+}, {
+  age: 24,
+  email: "acd@gmail.com",
+  name: "acd"
+}, {
+  age: 24,
+  email: "def@gmail.com",
+  name: "def"
+}] */
+const unique = (input) => {
+  return Object.values(input.reduce((acc, item) => {
+    // If email doesn't exist in acc
+    if (!acc[item.email]) {
+      acc[item.email] = item; // Update acc with current item
+    }
+    return acc;
+  }, {}));
+}
+
+console.log(unique(input));
